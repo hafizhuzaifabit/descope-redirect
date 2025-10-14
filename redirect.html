@@ -5,18 +5,14 @@
     <title>Redirecting…</title>
     <script>
       (function () {
-        const params = new URLSearchParams(window.location.search);
-        const code = params.get("code");
-        const state = params.get("state");
-        // If we have a code, open the app; otherwise show an error
-        if (code) {
-          const redirect = `myapp://auth-callback?code=${encodeURIComponent(code)}${
+        const p = new URLSearchParams(window.location.search);
+        const code = p.get("code");
+        const state = p.get("state");
+        const intentUrl =
+          `intent://auth-callback?code=${encodeURIComponent(code || "")}${
             state ? "&state=" + encodeURIComponent(state) : ""
-          }`;
-          window.location.replace(redirect);
-        } else {
-          document.body.innerText = "Missing authorization code.";
-        }
+          }#Intent;scheme=myapp;package=com.example.sterlinggrey;end`;
+        window.location.replace(intentUrl);
       })();
     </script>
   </head>
