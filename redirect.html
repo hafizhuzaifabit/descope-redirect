@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Redirecting…</title>
-    <script>
-      (function () {
-        const p = new URLSearchParams(window.location.search);
-        const code = p.get("code");
-        const state = p.get("state");
-        const intentUrl =
-          `intent://auth-callback?code=${encodeURIComponent(code || "")}${
-            state ? "&state=" + encodeURIComponent(state) : ""
-          }#Intent;scheme=myapp;package=com.example.sterlinggrey;end`;
-        window.location.replace(intentUrl);
-      })();
-    </script>
-  </head>
-  <body>
-    <p>Redirecting to app…</p>
-  </body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    if (code) {
+      window.location.href = `exampleauthschema://my-app.com/handle-oauth?code=${code}`;
+    }
+  </script>
+</head>
+<body>
+  Redirecting back to the app...
+</body>
 </html>
+
